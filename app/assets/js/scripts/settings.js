@@ -343,13 +343,19 @@ const msftLoginLogger = LoggerUtil.getLogger('Microsoft Login')
 const msftLogoutLogger = LoggerUtil.getLogger('Microsoft Logout')
 
 // Bind the add mojang account button.
-document.getElementById('settingsAddMojangAccount').onclick = (e) => {
-    switchView(getCurrentView(), VIEWS.login, 500, 500, () => {
-        loginViewOnCancel = VIEWS.settings
-        loginViewOnSuccess = VIEWS.settings
-        loginCancelEnabled(true)
-    })
-}
+document.addEventListener('DOMContentLoaded', function() {
+    const btnAddCrack = document.getElementById('settingsAddMojangAccount')
+    if(btnAddCrack) {
+        btnAddCrack.onclick = (e) => {
+            // Redirige vers la page loginOptions (choix Microsoft ou Crack)
+            switchView(getCurrentView(), VIEWS.loginOptions, 500, 500, () => {
+                loginOptionsViewOnCancel = VIEWS.settings
+                loginOptionsViewOnLoginSuccess = VIEWS.settings
+                loginOptionsCancelEnabled(true)
+            })
+        }
+    }
+})
 
 // Bind the add microsoft account button.
 document.getElementById('settingsAddMicrosoftAccount').onclick = (e) => {
@@ -469,8 +475,7 @@ function bindAuthAccountSelect(){
 }
 
 /**
- * Bind functionality for the log out button. If the logged out account was
- * the selected account, another account will be selected and the UI will
+ * Bind logout buttons for auth accounts. Accounts with false logout value will
  * be updated accordingly.
  */
 function bindAuthAccountLogOut(){
@@ -479,24 +484,9 @@ function bindAuthAccountLogOut(){
             let isLastAccount = false
             if(Object.keys(ConfigManager.getAuthAccounts()).length === 1){
                 isLastAccount = true
-                setOverlayContent(
-                    Lang.queryJS('settings.authAccountLogout.lastAccountWarningTitle'),
-                    Lang.queryJS('settings.authAccountLogout.lastAccountWarningMessage'),
-                    Lang.queryJS('settings.authAccountLogout.confirmButton'),
-                    Lang.queryJS('settings.authAccountLogout.cancelButton')
-                )
-                setOverlayHandler(() => {
-                    processLogOut(val, isLastAccount)
-                    toggleOverlay(false)
-                })
-                setDismissHandler(() => {
-                    toggleOverlay(false)
-                })
-                toggleOverlay(true, true)
-            } else {
-                processLogOut(val, isLastAccount)
             }
-            
+            // Directly process logout without confirmation dialog
+            processLogOut(val, isLastAccount)
         }
     })
 }
@@ -638,15 +628,20 @@ function populateAuthAccounts(){
     authKeys.forEach((val) => {
         const acc = authAccounts[val]
 
+        // For crack accounts, use a default Steve skin instead of trying to fetch from MC API
+        const skinUrl = acc.type === 'crack' 
+            ? 'https://mc-heads.net/body/steve/60' 
+            : `https://mc-heads.net/body/${acc.uuid}/60`
+
         const accHtml = `<div class="settingsAuthAccount" uuid="${acc.uuid}">
             <div class="settingsAuthAccountLeft">
-                <img class="settingsAuthAccountImage" alt="${acc.displayName}" src="https://mc-heads.net/body/${acc.uuid}/60">
+                <img class="settingsAuthAccountImage" alt="${acc.displayName}" src="${skinUrl}" style="${acc.type === 'crack' ? 'border: 2px solid var(--viking-gold); border-radius: 5px;' : ''}">
             </div>
             <div class="settingsAuthAccountRight">
                 <div class="settingsAuthAccountDetails">
                     <div class="settingsAuthAccountDetailPane">
                         <div class="settingsAuthAccountDetailTitle">${Lang.queryJS('settings.authAccountPopulate.username')}</div>
-                        <div class="settingsAuthAccountDetailValue">${acc.displayName}</div>
+                        <div class="settingsAuthAccountDetailValue" style="${acc.type === 'crack' ? 'color: var(--viking-gold); font-weight: bold;' : ''}">${acc.displayName}${acc.type === 'crack' ? ' (Crack)' : ''}</div>
                     </div>
                     <div class="settingsAuthAccountDetailPane">
                         <div class="settingsAuthAccountDetailTitle">${Lang.queryJS('settings.authAccountPopulate.uuid')}</div>

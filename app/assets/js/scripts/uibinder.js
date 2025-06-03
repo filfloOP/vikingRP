@@ -70,6 +70,7 @@ async function showMainUI(data){
     setTimeout(() => {
         document.getElementById('frameBar').style.backgroundColor = 'rgba(0, 0, 0, 0.5)'
         document.body.style.backgroundImage = `url('assets/images/backgrounds/${document.body.getAttribute('bkid')}.jpg')`
+        //document.body.style.backgroundImage = `url('assets/images/backgrounds/${document.body.getAttribute('bkid')}.gif')`
         $('#main').show()
 
         const isLoggedIn = Object.keys(ConfigManager.getAuthAccounts()).length > 0
@@ -326,6 +327,11 @@ function mergeModConfiguration(o, n, nReq = false){
 async function validateSelectedAccount(){
     const selectedAcc = ConfigManager.getSelectedAccount()
     if(selectedAcc != null){
+        // Skip validation entirely for crack accounts
+        if(selectedAcc.type === 'crack') {
+            return true
+        }
+        
         const val = await AuthManager.validateSelected()
         if(!val){
             ConfigManager.removeAuthAccount(selectedAcc.uuid)

@@ -7,7 +7,7 @@ const logger = LoggerUtil.getLogger('ConfigManager')
 
 const sysRoot = process.env.APPDATA || (process.platform == 'darwin' ? process.env.HOME + '/Library/Application Support' : process.env.HOME)
 
-const dataPath = path.join(sysRoot, '.helioslauncher')
+const dataPath = path.join(sysRoot, '.VikingRP')
 
 const launcherDir = require('@electron/remote').app.getPath('userData')
 
@@ -182,6 +182,12 @@ function validateKeySet(srcObj, destObj){
             destObj[keys[i]] = validateKeySet(srcObj[keys[i]], destObj[keys[i]])
         }
     }
+    
+    // Ensure authenticationDatabase always exists even if blacklisted
+    if(typeof destObj.authenticationDatabase === 'undefined') {
+        destObj.authenticationDatabase = {}
+    }
+    
     return destObj
 }
 
@@ -790,4 +796,22 @@ exports.getAllowPrerelease = function(def = false){
  */
 exports.setAllowPrerelease = function(allowPrerelease){
     config.settings.launcher.allowPrerelease = allowPrerelease
+}
+
+/**
+ * Ajoute un compte crack à la base de données d'authentification.
+ * @param {string} uuid L'uuid du compte crack.
+ * @param {string} name Le nom d'utilisateur crack.
+ * @returns {Object} L'objet compte crack créé.
+ */
+exports.addCrackAccount = function(uuid, name) {
+    config.selectedAccount = uuid
+    config.authenticationDatabase[uuid] = {
+        type: 'crack',
+        accessToken: 'crack',
+        username: name.trim(),
+        uuid: uuid.trim(),
+        displayName: name.trim()
+    }
+    return config.authenticationDatabase[uuid]
 }

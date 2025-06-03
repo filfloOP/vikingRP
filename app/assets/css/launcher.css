@@ -3,6 +3,26 @@
 
 /*******************************************************************************
  *                                                                             *
+ * Viking Color Palette Variables                                             *
+ *                                                                             *
+ ******************************************************************************/
+
+:root {
+    --viking-dark-brown: #5d3a1a;
+    --viking-brown: #8b5a2b;
+    --viking-light-brown: #b8804a;
+    --viking-blood-red: #c41e3a;
+    --viking-dark-red: #8b1538;
+    --viking-gold: #d4af37;
+    --viking-bronze: #cd7f32;
+    --viking-nordic-blue: #6b89c7;
+    --viking-steel-gray: #7a8aa3;
+    --viking-bone-white: #f5f1e8;
+    --viking-ash-gray: #6b6b6b;
+}
+
+/*******************************************************************************
+ *                                                                             *
  * Fonts                                                                       *
  *                                                                             *
  ******************************************************************************/
@@ -43,7 +63,17 @@ p {
 /* Set default font and color. */
 body, button {
     font-family: 'Avenir Book';
-    color: white;
+    color: var(--viking-bone-white);
+}
+
+/* Hide all scrollbars globally */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* For Firefox */
+* {
+    scrollbar-width: none;
 }
 
 /*body {
@@ -64,7 +94,8 @@ body, button {
     display: flex;
     flex-direction: column;
     transition: background-color 1s ease;
-    /*background-color: rgba(0, 0, 0, 0.5);*/
+    background: linear-gradient(to right, var(--viking-brown), var(--viking-light-brown));
+    border-bottom: 2px solid var(--viking-gold);
     -webkit-user-select: none;
 }
 
@@ -112,6 +143,8 @@ body, button {
     font-size: 14px;
     font-family: 'Avenir Medium';
     letter-spacing: 0.5px;
+    color: var(--viking-bone-white);
+    text-shadow: 1px 1px 2px var(--viking-dark-brown);
 }
 
 /* Windows frame button dock. */
@@ -141,13 +174,16 @@ body, button {
     height: 22px;
     width: 39px;
     cursor: pointer;
+    color: var(--viking-bone-white);
 }
 .frameButton:hover,
 .frameButton:focus {
-    background: rgba(189, 189, 189, 0.43);
+    background: var(--viking-gold);
+    color: var(--viking-dark-brown);
 }
 .frameButton:active {
-    background: rgba(156, 156, 156, 0.43);
+    background: var(--viking-bronze);
+    color: var(--viking-dark-brown);
 }
 .frameButton:focus {
     outline: 0px;
@@ -156,10 +192,12 @@ body, button {
 /* Close button is red. */
 #frameButton_close:hover,
 #frameButton_close:focus {
-    background: rgba(255, 53, 53, 0.61) !important;
+    background: var(--viking-blood-red) !important;
+    color: var(--viking-bone-white) !important;
 }
 #frameButton_close:active {
-    background: rgba(235, 0, 0, 0.61) !important;
+    background: var(--viking-dark-red) !important;
+    color: var(--viking-bone-white) !important;
 }
 
 /* Darwin Frame Button Styles. */
@@ -222,7 +260,7 @@ body, button {
     align-items: center;
     height: 100%;
     width: 100%;
-    background: rgba(0, 0, 0, 0.50);
+    background: transparent;
 }
 
 #welcomeContent {
@@ -274,11 +312,11 @@ body, button {
 
 #welcomeImageSeal {
     border-radius: 50%;
-    border: 2px solid #cad7e1;
-    background: rgba(1, 2, 1, 0.5);
+    border: 3px solid var(--viking-gold);
+    background: var(--viking-dark-brown);
     height: 125px;
     width: 125px;
-    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+    box-shadow: 0px 0px 15px 2px var(--viking-bronze);
     margin-bottom: 5%;
     margin-top: 10%;
 }
@@ -286,33 +324,36 @@ body, button {
 #welcomeHeader {
     font-family: 'Avenir Medium';
     text-align: center;
-    color: white;
+    color: var(--viking-gold);
     margin-bottom: 25px;
     letter-spacing: 1px;
     font-size: 20px;
-    text-shadow: white 0px 0px 0px;
+    text-shadow: 2px 2px 4px var(--viking-dark-brown);
 }
 
 #welcomeDescription {
     text-align: justify;
     font-size: 13px;
     font-weight: 100;
-    text-shadow: rgba(255, 255, 255, 0.75) 0px 0px 20px
+    color: var(--viking-bone-white);
+    text-shadow: 1px 1px 3px var(--viking-dark-brown);
 }
 
 #welcomeDescCTA {
     text-align: center;
     font-size: 14px;
     font-weight: 100;
-    text-shadow: rgba(255, 255, 255, 0.75) 0px 0px 20px
+    color: var(--viking-bone-white);
+    text-shadow: 1px 1px 3px var(--viking-dark-brown);
 }
 
 /* Login button styles. */
 #welcomeButton {
-    background: none;
+    background: linear-gradient(to bottom, var(--viking-blood-red), var(--viking-dark-red));
+    border: 2px solid var(--viking-gold);
+    color: var(--viking-bone-white);
     font-weight: bold;
     letter-spacing: 2px;
-    border: none;
     padding: 15px 5px;
     margin: 10px 0px;
     cursor: pointer;
@@ -321,19 +362,26 @@ body, button {
     transition: 0.5s ease;
     margin-top: 5%;
     margin-bottom: -5%;
+    border-radius: 4px;
 }
 #welcomeButton:disabled {
-    color: rgba(255, 255, 255, 0.75);
+    color: var(--viking-steel-gray);
+    background: var(--viking-ash-gray);
+    border-color: var(--viking-steel-gray);
     pointer-events: none;
 }
 #welcomeButton:hover,
 #welcomeButton:focus {
-    text-shadow: 0px 0px 20px #fff;
+    background: linear-gradient(to bottom, var(--viking-gold), var(--viking-bronze));
+    color: var(--viking-dark-brown);
+    text-shadow: 0px 0px 10px var(--viking-bone-white);
+    box-shadow: 0px 0px 15px var(--viking-gold);
     outline: none;
 }
 #welcomeButton:active {
-    color: #c7c7c7;
-    text-shadow: 0px 0px 20px #c7c7c7;
+    background: linear-gradient(to bottom, var(--viking-bronze), var(--viking-gold));
+    color: var(--viking-dark-brown);
+    text-shadow: 0px 0px 10px var(--viking-bone-white);
 }
 #welcomeSVG {
     -webkit-transform: translate3d(0, 0, 0);
@@ -385,7 +433,7 @@ body, button {
     height: 100%;
     width: 100%;
     transition: filter 0.25s ease;
-    background: rgba(0, 0, 0, 0.50);
+    background: transparent;
 }
 
 /* Login cancel button styles. */
@@ -487,11 +535,11 @@ body, button {
 /* Logo on login form. */
 #loginImageSeal {
     border-radius: 50%;
-    border: 2px solid #cad7e1;
-    background: rgba(1, 2, 1, 0.5);
+    border: 3px solid var(--viking-gold);
+    background: var(--viking-dark-brown);
     height: 125px;
     width: 125px;
-    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+    box-shadow: 0px 0px 15px 2px var(--viking-bronze);
     margin-bottom: 20px;
 }
 
@@ -502,6 +550,7 @@ body, button {
     font-size: 12px;
     letter-spacing: 1px;
     font-weight: bold;
+    color: var(--viking-gold);
 }
 
 /* Container to organize login field elements. */
@@ -1053,7 +1102,7 @@ body, button {
     position: relative;
     height: 100%;
     display: flex;
-    background-color: rgba(0, 0, 0, 0.50);
+    background: transparent;
     transition: background-color 0.25s cubic-bezier(.02, .01, .47, 1);
 }
 
@@ -1194,14 +1243,13 @@ body, button {
     overflow-y: auto;
 }
 .settingsTab::-webkit-scrollbar {
-    width: 2px;
+    display: none;
 }
 .settingsTab::-webkit-scrollbar-track {
     display: none;
 }
 .settingsTab::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.50);
+    display: none;
 }
 
 /* Add spacing to the top of each settings tab. */
@@ -1934,14 +1982,13 @@ input:checked + .toggleSwitchSlider:before {
     display: none;
 }
 .settingsSelectOptions::-webkit-scrollbar {
-    width: 2px;
+    display: none;
 }
 .settingsSelectOptions::-webkit-scrollbar-track {
     display: none;
 }
 .settingsSelectOptions::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.50);
+    display: none;
 }
 
 /* Shared styles between options and selection div. */
@@ -2449,6 +2496,7 @@ input:checked + .toggleSwitchSlider:before {
 #landingContainer {
     height: 100%;
     position: relative;
+    background: transparent;
     transition: background 2s ease;
     overflow-y: hidden;
 }
@@ -2482,7 +2530,7 @@ input:checked + .toggleSwitchSlider:before {
 #landingContainer > #lower {
     height: 23%;
     display: flex;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    background: transparent;
 }
 #landingContainer > #lower > #left {
     position: relative;
@@ -2530,318 +2578,8 @@ input:checked + .toggleSwitchSlider:before {
  *                                                                             *
  ******************************************************************************/
 
-/* Main container. */
-#newsContainer {
-    position: absolute;
-    top: 100%;
-    height: 100%;
-    width: 100%;
-    transition: top 2s ease;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-}
-
-/* News content container. */
-#newsContent {
-    height: 82vh;
-    width: 100%;
-    display: flex;
-    -webkit-user-select: initial;
-    position: relative;
-}
-
-/* Drop shadow displayed when content is scrolled out of view. */
-#newsContent:before {
-    content: '';
-    background: linear-gradient(rgba(0, 0, 0, 0.25), transparent);
-    width: 100%;
-    height: 5px;
-    position: absolute;
-    opacity: 0;
-    transition: opacity 0.25s ease;
-}
-#newsContent[scrolled]:before {
-    opacity: 1;
-}
-
-/* News article status container (left). */
-#newsStatusContainer {
-    width: calc(30% - 60px);
-    height: calc(100% - 30px);
-    padding: 15px 15px 15px 45px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-}
-
-/* News status content. */
-#newsStatusContent {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-/* News title wrapper. */
-#newsTitleContainer {
-    display: flex;
-    max-width: 90%;
-}
-
-/* News article title styles. */
-#newsArticleTitle {
-    font-size: 18px;
-    font-weight: bold;
-    font-family: 'Avenir Medium';
-    color: white;
-    text-decoration: none;
-    transition: 0.25s ease;
-    outline: none;
-    text-align: right;
-}
-#newsArticleTitle:hover,
-#newsArticleTitle:focus {
-    text-shadow: 0px 0px 20px white;
-}
-#newsArticleTitle:active {
-    color: #c7c7c7;
-    text-shadow: 0px 0px 20px #c7c7c7;
-}
-
-/* News meta container. */
-#newsMetaContainer {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Date and author wrappers. */
-#newsArticleDateWrapper,
-#newsArticleAuthorWrapper {
-    display: flex;
-    justify-content: flex-end;
-}
-
-/* Date and author shared styles. */
-#newsArticleDate,
-#newsArticleAuthor {
-    display: inline-block;
-    font-size: 10px;
-    padding: 0px 5px;
-    font-weight: bold;
-    border-radius: 2px;
-}
-
-/* Date styles. */
-#newsArticleDate {
-    background: white;
-    color: black;
-    margin-top: 5px;
-}
-
-/* Author styles. */
-#newsArticleAuthor {
-    background: #a02d2a;
-}
-
-/* News article comments styles. */
-#newsArticleComments {
-    margin-top: 5px;
-    display: inline-block;
-    font-size: 10px;
-    color: #ffffff;
-    text-decoration: none;
-    transition: 0.25s ease;
-    outline: none;
-    text-align: right;
-}
-#newsArticleComments:focus,
-#newsArticleComments:hover {
-    color: #e0e0e0;
-}
-#newsArticleComments:active {
-    color: #c7c7c7;
-}
-
-/* Article content container (right). */
-#newsArticleContainer {
-    width: calc(100% - 25px);
-    height: 100%;
-    margin: 0px 0px 0px 25px;
-}
-
-/* Article content styles. */
-#newsArticleContentScrollable {
-    font-size: 12px;
-    overflow-y: scroll;
-    height: 100%;
-    padding: 0px 15px 0px 15px;
-}
-#newsArticleContentScrollable img,
-#newsArticleContentScrollable iframe {
-    max-width: 95%;
-    display: block;
-    margin: 0 auto;
-}
-#newsArticleContentScrollable a {
-    color: rgba(202, 202, 202, 0.75);
-    transition: 0.25s ease;
-    outline: none;
-}
-#newsArticleContentScrollable a:hover,
-#newsArticleContentScrollable a:focus {
-    color: rgba(255, 255, 255, 0.75);
-}
-#newsArticleContentScrollable a:active {
-    color: rgba(165, 165, 165, 0.75);
-}
-#newsArticleContentScrollable::-webkit-scrollbar {
-    width: 2px;
-}
-#newsArticleContentScrollable::-webkit-scrollbar-track {
-    display: none;
-}
-#newsArticleContentScrollable::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.50);
-}
-.bbCodeSpoilerButton {
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    font-size: 16px;
-    transition: 0.25s ease;
-    width: 100%;
-    border-bottom: 1px solid white;
-    padding-bottom: 15px;
-}
-.bbCodeSpoilerButton:hover,
-.bbCodeSpoilerButton:focus {
-    text-shadow: 0px 0px 20px #ffffff, 0px 0px 20px #ffffff, 0px 0px 20px #ffffff;
-}
-.bbCodeSpoilerButton:active {
-    color: #c7c7c7;
-    text-shadow: 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7;
-}
-.bbCodeSpoilerText {
-    display: none;
-    padding: 15px 0px;
-    border-bottom: 1px solid white;
-}
 
 
-#newsArticleContentWrapper {
-    width: 80%;
-}
-
-.newsArticleSpacerTop {
-    height: 15px;
-}
-
-/* Div to add spacing at the end of a news article. */
-.newsArticleSpacerBot {
-    height: 30px;
-}
-
-/* News navigation container. */
-#newsNavigationContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 10px;
-    -webkit-user-select: none;
-    position: absolute;
-    bottom: 15px;
-    right: 0px;
-}
-
-/* Navigation status span. */
-#newsNavigationStatus {
-    font-size: 12px;
-    margin: 0px 15px;
-}
-
-/* Left and right navigation button styles. */
-#newsNavigateLeft,
-#newsNavigateRight {
-    background: none;
-    border: none;
-    outline: none;
-    height: 20px;
-    cursor: pointer;
-}
-#newsNavigateLeft:hover #newsNavigationLeftSVG,
-#newsNavigateLeft:focus #newsNavigationLeftSVG,
-#newsNavigateRight:hover #newsNavigationRightSVG,
-#newsNavigateRight:focus #newsNavigationRightSVG {
-    -webkit-filter: drop-shadow(0px 0px 2px #fff);
-}
-#newsNavigateLeft:active #newsNavigationLeftSVG .arrowLine,
-#newsNavigateRight:active #newsNavigationRightSVG .arrowLine {
-    stroke: #c7c7c7;
-}
-#newsNavigateLeft:active #newsNavigationLeftSVG,
-#newsNavigateRight:active #newsNavigationRightSVG {
-    -webkit-filter: drop-shadow(0px 0px 2px #c7c7c7);
-}
-#newsNavigateLeft:disabled #newsNavigationLeftSVG .arrowLine,
-#newsNavigateRight:disabled #newsNavigationRightSVG .arrowLine {
-    stroke: rgba(255, 255, 255, 0.75);
-}
-#newsNavigationLeftSVG {
-    transform: rotate(-90deg);
-    width: 15px;
-}
-#newsNavigationRightSVG {
-    transform: rotate(90deg);
-    width: 15px;
-}
-
-/* News error (message) container. */
-#newsErrorContainer {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-}
-#newsErrorFailed {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-}
-
-/* News error content (message). */
-.newsErrorContent {
-    font-size: 20px;
-}
-#newsErrorLoading {
-    display: flex;
-    width: 168.92px;
-}
-#nELoadSpan {
-    white-space: pre;
-}
-/* News error retry button styles. */
-#newsErrorRetry {
-    font-size: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    background: none;
-    border: none;
-    outline: none;
-    transition: 0.25s ease;
-}
-#newsErrorRetry:focus,
-#newsErrorRetry:hover {
-    text-shadow: 0px 0px 20px white;
-}
-#newsErrorRetry:active {
-    color: #c7c7c7;
-    text-shadow: 0px 0px 20px #c7c7c7;
-}
 
 /*******************************************************************************
  *                                                                             *
@@ -2855,12 +2593,11 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Logo image. */
 #image_seal {
-    height: 70px;
+    height: 300px;
     width: auto;
     position: relative;
-    border: 2px solid white;
     box-sizing: border-box;
-    border-radius: 50%;
+    border-radius: 0%;
 }
 
 /* Logo container styles. */
@@ -2971,12 +2708,12 @@ input:checked + .toggleSwitchSlider:before {
 /* User profile avatar container. */
 #avatarContainer {
     border-radius: 50%;
-    border: 2px solid #cad7e1;
+    border: 2px solid var(--viking-gold);
     box-sizing: border-box;
-    background: rgba(1, 2, 1, 0.5);
+    background: var(--viking-dark-brown);
     height: 70px;
     width: 70px;
-    box-shadow: 0px 0px 10px 0px rgb(0, 0, 0);
+    box-shadow: 0px 0px 10px 0px var(--viking-bronze);
     overflow: hidden;
     position: relative;
     background-position: center;
@@ -3017,7 +2754,7 @@ input:checked + .toggleSwitchSlider:before {
     min-width: 135px;
     font-weight: 900;
     letter-spacing: 1px;
-    text-shadow: 0px 0px 20px black;
+    text-shadow: 0px 0px 20px rgb(4, 13, 13, 0.178);
     position: absolute;
     right: 95px;
     text-align: right;
@@ -3030,9 +2767,12 @@ input:checked + .toggleSwitchSlider:before {
     display: flex;
     flex-direction: column;
     margin-top: 25px;
-    height: calc(100% - 95px);
-    width: 70px;
+    height: calc(34% - 5px);
+    width: 65px;
     align-items: center;
+    border-radius: 10%;
+    background: linear-gradient(to bottom, var(--viking-brown), var(--viking-dark-brown));
+    border: 1px solid var(--viking-bronze);
 }
 
 /* Social Media Icon division containers. */
@@ -3208,10 +2948,10 @@ input:checked + .toggleSwitchSlider:before {
 
 /* Span which displays the player count of the selected server. */
 #player_count {
-    color: #949494;
-    font-size: 8px;
+    color: var(--viking-gold);
+    font-size: 15px;
     font-weight: 900;
-    text-shadow: 0px 0px 20px #949494;
+    text-shadow: 0px 0px 20px var(--viking-bronze);
     margin-left: 10px;
 }
 
@@ -3331,11 +3071,11 @@ input:checked + .toggleSwitchSlider:before {
 }
 #newsButton:hover #newsButtonText,
 #newsButton:focus #newsButtonText {
-    text-shadow: 0px 0px 20px #fff, 0px 0px 20px #fff;
+    text-shadow: 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7;
 }
 #newsButton:active {
-    color: #c7c7c7;
-    text-shadow: 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7;
+    color: #06ee54;
+    text-shadow: 0px 0px 20px #06ee54, 0px 0px 20px #06ee54;
 }
 
 #newsButton:hover #newsButtonSVG,
@@ -3393,31 +3133,125 @@ input:checked + .toggleSwitchSlider:before {
     display: inline-flex;
 }
 
-/* The launch button. */
+/* Viking sword launch button with SVG image */
 #launch_button {
-    background: none;
+    position: relative;
+    background: url('../images/viking-sword.svg') no-repeat center center;
+    background-size: contain;
     border: none;
+    width: 430px;
+    height: 100px;
     cursor: pointer;
-    font-weight: 900;
+    transition: all 0.3s ease;
+    margin: 0 auto;
+    margin-left: 60px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+    font-size: 0; /* Hide any default button text */
+}
+
+/* JOUER text overlay on the sword blade - repositioned back to center */
+#launch_button::before {
+    content: 'JOUER';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Ringbearer', serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--viking-bronze);
+    text-shadow: 
+        2px 2px 4px var(--viking-dark-brown),
+        -1px -1px 2px var(--viking-gold);
     letter-spacing: 2px;
-    text-shadow: 0px 0px 0px #bebcbb;
-    font-size: 20px;
-    padding: 0px;
-    transition: 0.25s ease;
-    outline: none;
+    pointer-events: none;
+    z-index: 2;
 }
-#launch_button:hover,
-#launch_button:focus {
-    text-shadow: 0px 0px 20px #fff, 0px 0px 20px #fff;
+
+/* Hover effects */
+#launch_button:hover {
+    transform: translateY(-5px) scale(1.05);
+    filter: 
+        drop-shadow(0 8px 16px rgba(0, 0, 0, 0.6))
+        brightness(1.2)
+        contrast(1.1);
 }
+
+#launch_button:hover::before {
+    color: var(--viking-gold);
+    text-shadow: 
+        2px 2px 6px var(--viking-dark-brown),
+        0 0 10px var(--viking-gold),
+        -1px -1px 2px var(--viking-bronze);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Active/click effects */
 #launch_button:active {
-    color: #c7c7c7;
-    text-shadow: 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7;
+    transform: translateY(-2px) scale(1.02);
+    filter: 
+        drop-shadow(0 4px 8px rgba(0, 0, 0, 0.6))
+        brightness(1.1);
 }
+
+#launch_button:active::before {
+    transform: translate(-50%, -50%) scale(1.05);
+    color: var(--viking-bronze);
+}
+
+/* Disabled state */
 #launch_button:disabled {
-    color: #c7c7c7;
+    transform: none;
+    filter: 
+        drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3))
+        grayscale(100%)
+        brightness(0.7);
     cursor: default;
     pointer-events: none;
+}
+
+#launch_button:disabled::before {
+    color: var(--viking-steel-gray);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    transform: translate(-50%, -50%);
+}
+
+/* Alternative: If you want to use an SVG sword instead */
+.sword-svg-button {
+    position: relative;
+    background: none;
+    border: none;
+    width: 400px;
+    height: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 auto;
+}
+
+/* SVG sword styling */
+.sword-svg-button svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.4));
+    transition: all 0.3s ease;
+}
+
+.sword-svg-button:hover svg {
+    filter: 
+        drop-shadow(0 8px 16px rgba(0, 0, 0, 0.6))
+        drop-shadow(0 0 20px var(--viking-gold));
+    transform: translateY(-5px) scale(1.05);
+}
+
+/* Button which opens the server selection view. */
+#server_selection_button {
+    display: none;
+}
+
+/* Remove old CSS-based sword elements that are no longer needed */
+#launch_content::before,
+#launch_content::after {
+    display: none;
 }
 
 /* Launch details main container, hidden until launch processing begins. */
@@ -3426,7 +3260,7 @@ input:checked + .toggleSwitchSlider:before {
     top: 25px;
     display: none;
 }
- 
+
 /* Left side of launch details container, displays percentage and a divider. */
 #launch_details_left {
     display: flex;
@@ -3436,7 +3270,7 @@ input:checked + .toggleSwitchSlider:before {
 #launch_progress_label {
     font-weight: 900;
     letter-spacing: 1px;
-    text-shadow: 0px 0px 0px #bebcbb;
+    text-shadow: 0px 0px 0px var(--viking-dark-red);
     font-size: 20px;
     min-width: 53.21px;
     max-width: 53.21px;
@@ -3448,41 +3282,54 @@ input:checked + .toggleSwitchSlider:before {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
+    width: 300px;
+    height: 30px;
 }
 
-/* Button which opens the server selection view. */
-#server_selection_button {
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    line-height: 24px;
-    padding: 0px;
-    transition: 0.25s ease;
-}
-#server_selection_button:hover,
-#server_selection_button:focus {
-    text-shadow: 0px 0px 20px #fff, 0px 0px 20px #fff, 0px 0px 20px #fff;
-}
-#server_selection_button:active {
-    color: #c7c7c7;
-    text-shadow: 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7, 0px 0px 20px #c7c7c7;
+/* Sword progress container - clean implementation */
+#launch_progress_container {
+    position: relative;
+    width: 300px;
+    height: 20px;
+    background: url('../images/progress-sword.svg') no-repeat center center;
+    background-size: contain;
+    margin-bottom: 5px;
 }
 
-/* Progress bar styles. */
+/* Progress fill overlay - this will be animated by JavaScript */
+#launch_progress_fill {
+    position: absolute;
+    top: 50%;
+    left: 98px; /* Start at the beginning of the blade (73px + 25px for proper positioning) */
+    transform: translateY(-50%);
+    width: 0%; /* Will be controlled by JavaScript */
+    max-width: 182px; /* Length of the blade only (280px - 98px) */
+    height: 4px; /* Height to match the blade thickness */
+    background: linear-gradient(to right, 
+        #660000 0%, 
+        #cc0000 30%, 
+        #ff3333 70%, 
+        #ff6666 100%);
+    /* Simple rectangular shape for the simple sword */
+    clip-path: polygon(
+        0% 0%, 
+        95% 0%, 
+        100% 50%, 
+        95% 100%, 
+        0% 100%
+    );
+    transition: width 0.4s ease;
+    z-index: 2;
+    border-radius: 0px;
+}
+
+/* Hide the default HTML progress element */
 #launch_progress[value] {
-    height: 3px;
-    width: 265px;
-    -webkit-appearance: none;
-}
-#launch_progress[value]::-webkit-progress-bar {
-    background-color: transparent;
-}
-#launch_progress[value]::-webkit-progress-value {
-    background-color: #fff;
+    display: none !important;
 }
 
-/* Span which displays information about the status of the launch process. */
+/* Text showing launch details */
 #launch_details_text {
     font-size: 11px;
     text-overflow: ellipsis;
@@ -3490,479 +3337,11 @@ input:checked + .toggleSwitchSlider:before {
     overflow: hidden;
 }
 
-/*******************************************************************************
- *                                                                             *
- * Overlay View (overlay.ejs)                                                  *
- *                                                                             *
- ******************************************************************************/
-
-/* * *
-* Overlay View (Main Content)
-* * */
-
-/* Overlay container, placed over the main div. */
-#overlayContainer {
-    position: absolute;
-    z-index: 500;
-    top: 22px;
+/* Adjust launch content positioning for the sword */
+#launch_content {
+    position: relative;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     width: 100%;
-    height: calc(100% - 22px);
-    background: rgba(0, 0, 0, 0.50);
-}
-
-/* Main overlay content. */
-#overlayContent {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /*justify-content: space-between;*/
-    width: 300px;
-    /*height: 35%;*/
-    box-sizing: border-box;
-    padding: 15px 0px;
-    /* background-color: #424242; */
-    text-align: center;
-}
-
-/* Main overlay content anchor styles. */
-#overlayContent a,
-#overlayDismiss {
-    color: rgba(202, 202, 202, 0.75);
-    transition: 0.25s ease;
-}
-#overlayContent a:hover,
-#overlayContent a:focus,
-#overlayDismiss:focus {
-    color: rgba(255, 255, 255, 0.75);
-}
-#overlayContent a:active,
-#overlayDismiss:active {
-    color: rgba(165, 165, 165, 0.75);
-}
-
-/* Add spacing between overlay content elements. */
-#overlayContent > *:first-child {
-    margin-top: 0px !important;
-}
-#overlayContent > *:last-child {
-    margin-bottom: 0px !important;
-}
-#overlayContent > * {
-    margin: 8px 0px;
-}
-
-/* Overlay title styles. */
-#overlayTitle {
-    font-family: 'Avenir Medium';
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    -webkit-user-select: initial;
-}
-
-/* Overlay description styles. */
-#overlayDesc {
-    font-size: 12px;
-    font-weight: bold;
-    -webkit-user-select: initial;
-}
-
-/* Div which contains action buttons. */
-#overlayActionContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-/* Overlay acknowledge button styles. */
-#overlayAcknowledge {
-    background: none;
-    border: 1px solid #ffffff;
-    color: white;
-    font-family: 'Avenir Medium';
-    font-weight: bold;
-    border-radius: 2px;
-    padding: 0px 8.1px;
-    cursor: pointer;
-    transition: 0.25s ease;
-}
-#overlayAcknowledge:hover,
-#overlayAcknowledge:focus {
-    box-shadow: 0px 0px 10px 0px #fff;
-    outline: none;
-}
-#overlayAcknowledge:active {
-    border-color: rgba(255, 255, 255, 0.75);
-    color: rgba(255, 255, 255, 0.75);
-}
-
-/* Overlay dismiss option styles. */
-#overlayDismiss {
-    font-weight: bold;
-    font-size: 10px;
-    text-decoration: none;
-    padding-top: 2.5px;
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
-}
-#overlayDismiss:hover {
-    color: rgba(255, 255, 255, 0.75);
-}
-#overlayDismiss:active {
-    color: rgba(165, 165, 165, 0.75);
-}
-
-/* * *
-* Overlay View (Server + Account Selection Content)
-* * */
-
-/* Server selection content container. */
-#serverSelectContent,
-#accountSelectContent {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 75%;
-}
-
-/* Server selection header. */
-#serverSelectHeader,
-#accountSelectHeader {
-    font-family: 'Avenir Medium';
-    font-size: 20px;
-    font-weight: bold;
-    color: #fff;
-    margin-bottom: 25px;
-}
-
-/* Wrapper div for the list of available servers. */
-#serverSelectList,
-#accountSelectList {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    max-height: 65%;
-    min-height: 40%;
-}
-
-/* Scrollable div which lists the available servers. */
-#serverSelectListScrollable,
-#accountSelectListScrollable {
-    padding: 0px 5px;
-    overflow-y: scroll;
-}
-#serverSelectListScrollable::-webkit-scrollbar,
-#accountSelectListScrollable::-webkit-scrollbar {
-    width: 2px;
-}
-#serverSelectListScrollable::-webkit-scrollbar-track,
-#accountSelectListScrollable::-webkit-scrollbar-track {
-    display: none;
-}
-#serverSelectListScrollable::-webkit-scrollbar-thumb,
-#accountSelectListScrollable::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.50);
-}
-
-/* Content container for a server listing. */
-.serverListing {
-    border: none;
-    padding: 0px;
-    width: 375px;
-    min-height: 60px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    opacity: 0.6;
-    transition: 0.25s ease;
-    cursor: pointer;
-    position: relative;
-    background: rgba(131, 131, 131, 0.25);
-}
-.serverListing[selected] {
-    cursor: default;
-    opacity: 1.0;
-}
-.serverListing:hover,
-.serverListing:focus {
-    outline: none;
-    opacity: 1.0;
-}
-
-.accountListing {
-    color: white;
-    border: 1px solid rgba(126, 126, 126, 0.57);
-    border-radius: 3px;
-    padding: 5px 45px;
-    width: 250px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    opacity: 0.6;
-    transition: 0.25s ease;
-    cursor: pointer;
-    position: relative;
-    background: rgba(0, 0, 0, 0.25);
-}
-.accountListing[selected] {
-    cursor: default;
-    opacity: 1.0;
-}
-.accountListing:hover,
-.accountListing:focus {
-    outline: none;
-    opacity: 1.0;
-}
-
-.accountListingName {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    padding-left: 10px;
-}
-
-/* Add spacing between server listings. */
-#serverSelectListScrollable > .serverListing:not(:first-child):not(:last-child),
-#accountSelectListScrollable > .accountListing:not(:first-child):not(:last-child) {
-    margin: 5px 0px;
-}
-#serverSelectListScrollable > .serverListing:first-child,
-#accountSelectListScrollable > .accountListing:first-child {
-    margin-bottom: 5px;
-}
-#serverSelectListScrollable > .serverListing:last-child,
-#accountSelectListScrollable > .accountListing:last-child {
-    margin-top: 5px;
-}
-
-/* Server listing image. */
-.serverListingImg {
-    margin: 0px 10px 0px 5px;
-    border: 1px solid #fff;
-    height: 50px;
-    width: 50px;
-}
-
-/* Content container for the server listing's details. */
-.serverListingDetails {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    height: 50px;
-}
-
-/* The name of the server listing. */
-.serverListingName {
-    font-size: 14px;
-    font-weight: bold;
-}
-
-/* Description for the server listing. */
-.serverListingDescription {
-    font-size: 10px;
-    line-height: 10px;
-    font-weight: bold;
-    text-align: left;
-}
-
-/* Content container for the server listing's information. */
-.serverListingInfo {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-}
-
-/* The minecraft version of the server listing. */
-.serverListingVersion {
-    font-size: 10px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    line-height: 12px;
-    height: 12px;
-    border-radius: 2px;
-    background: rgba(31, 140, 11, 0.8);
-    padding: 0px 2px;
-}
-
-/* The revision version of the server's manifest. */
-.serverListingRevision {
-    color: #969696;
-    font-size: 10px;
-    line-height: 12px;
-    padding: 0px 5px;
-}
-
-/* Star which indicates the default (main) server. */
-.serverListingStarWrapper {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    height: 12px;
-    position: relative;
-}
-/* Tooltip which displays when hovering over the star. */
-.serverListingStarTooltip {
-    visibility: hidden;
-    opacity: 0;
-    width: 65px;
-    background-color: rgba(0, 0, 0, 0.40);
-    text-align: center;
-    border-radius: 4px;
-    position: absolute;
-    z-index: 1;
-    left: 130%;
-    font-size: 10px;
-    transition: visibility 0s linear 0.25s, opacity 0.25s ease;
-}
-.serverListingStarTooltip::after {
-    content: " ";
-    position: absolute;
-    top: 50%;
-    right: 100%; /* To the left of the tooltip */
-    margin-top: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: transparent rgba(0, 0, 0, 0.40) transparent transparent;
-}
-.serverListingStarWrapper:hover .serverListingStarTooltip {
-    visibility: visible;
-    opacity: 1;
-    transition-delay:0s;
-}
-
-/* Content container which contains the server select actions. */
-#serverSelectActions,
-#accountSelectActions {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 25px;
-}
-
-/* Server selection confirm button styles. */
-#serverSelectConfirm,
-#accountSelectConfirm {
-    background: none;
-    border: 1px solid #ffffff;
-    color: white;
-    font-family: 'Avenir Medium';
-    font-weight: bold;
-    border-radius: 2px;
-    padding: 0px 8.1px;
-    cursor: pointer;
-    transition: 0.25s ease;
-    min-height: 20.67px;
-}
-#serverSelectConfirm:hover,
-#serverSelectConfirm:focus,
-#accountSelectConfirm:hover,
-#accountSelectConfirm:focus {
-    box-shadow: 0px 0px 10px 0px #fff;
-    outline: none;
-}
-#serverSelectConfirm:active,
-#accountSelectConfirm:active {
-    border-color: rgba(255, 255, 255, 0.75);
-    color: rgba(255, 255, 255, 0.75);
-}
-
-/* Server selection cancel button styles. */
-#serverSelectCancel,
-#accountSelectCancel {
-    font-weight: bold;
-    font-size: 10px;
-    text-decoration: none;
-    padding-top: 2.5px;
-    color: rgba(202, 202, 202, 0.75);
-    transition: 0.25s ease;
-    background: none;
-    border: none;
-    outline: none;
-    cursor: pointer;
-}
-#serverSelectCancel:hover,
-#serverSelectCancel:focus,
-#accountSelectCancel:hover,
-#accountSelectCancel:focus {
-    color: rgba(255, 255, 255, 0.75);
-}
-#serverSelectCancel:active,
-#accountSelectCancel:active {
-    color: rgba(165, 165, 165, 0.75);
-}
-
-/*******************************************************************************
- *                                                                             *
- * Loading Element (app.ejs)                                                   *
- *                                                                             *
- ******************************************************************************/
-
-/* Loading container, placed above everything. */
-#loadingContainer {
-    position: absolute;
-    z-index: 400;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: calc(100% - 22px);
-}
-
-/* Loading content container. */
-#loadingContent {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Spinner container. */
-#loadSpinnerContainer {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Stationary image for the spinner. */
-#loadCenterImage {
-    position: absolute;
-    width: 277px;
-    height: auto;
-}
-
-/* Rotating image for the spinner. */
-#loadSpinnerImage {
-    width: 280px;
-    height: auto;
-    z-index: 400;
-}
-
-/* Rotating animation for the spinner. */
-@keyframes rotating {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* Class which is applied when the spinner image is spinning. */
-.rotating {
-    animation: rotating 10s linear infinite;
 }

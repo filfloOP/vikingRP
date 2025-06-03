@@ -276,6 +276,15 @@ exports.addMicrosoftAccount = async function(authCode) {
 exports.removeMojangAccount = async function(uuid){
     try {
         const authAcc = ConfigManager.getAuthAccount(uuid)
+        
+        // Check if it's a crack account - if so, skip Mojang API call
+        if(authAcc.type === 'crack') {
+            ConfigManager.removeAuthAccount(uuid)
+            ConfigManager.save()
+            return Promise.resolve()
+        }
+        
+        // For real Mojang accounts, invalidate the token first
         const response = await MojangRestAPI.invalidate(authAcc.accessToken, ConfigManager.getClientToken())
         if(response.responseStatus === RestResponseStatus.SUCCESS) {
             ConfigManager.removeAuthAccount(uuid)
@@ -319,6 +328,13 @@ exports.removeMicrosoftAccount = async function(uuid){
  */
 async function validateSelectedMojangAccount(){
     const current = ConfigManager.getSelectedAccount()
+    
+    // For crack accounts, always return true (no validation needed)
+    if(current.type === 'crack') {
+        log.info('Crack account validation bypassed.')
+        return true
+    }
+    
     const response = await MojangRestAPI.validate(current.accessToken, ConfigManager.getClientToken())
 
     if(response.responseStatus === RestResponseStatus.SUCCESS) {
@@ -418,7 +434,11 @@ exports.validateSelected = async function(){
 
     if(current.type === 'microsoft') {
         return await validateSelectedMicrosoftAccount()
+    } else if(current.type === 'crack') {
+        // Crack accounts don't need validation
+        return true
     } else {
+        // Mojang accounts
         return await validateSelectedMojangAccount()
     }
     
