@@ -9,7 +9,7 @@
 <p align="center">Join modded servers without worrying about installing Java, Forge, or other mods. We'll handle that for you.</p>
 
 ![Screenshot 1](https://i.ibb.co/bgX0zgjJ/image.png)
-![Screenshot 2](https://i.imgur.com/x3B34n1.png)
+![Screenshot 2](https://i.ibb.co/219bpBb1/image.png)
 
 ## Features
 
